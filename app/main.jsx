@@ -11,7 +11,7 @@ import PuppyContainer from './components/PuppyContainer'
 import Dog from './components/Dog'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
-import {getAllPuppies, updatePuppies} from './reducers/puppies'
+import {getAllPuppies, getPresentPuppies} from './reducers/puppies'
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -27,6 +27,7 @@ const ExampleApp = connect(
 
 const onPuppiesEnter = () => {
   store.dispatch(getAllPuppies())
+  store.dispatch(getPresentPuppies())
 }
 
 render (
@@ -35,8 +36,7 @@ render (
       <Router history={browserHistory}>
         <Route path="/" component={ExampleApp}>
           <IndexRedirect to="/dogs" />
-          <Route path="/dogs" component={Dog} />
-          <Route path="/puppies" component={PuppyContainer} onEnter={onPuppiesEnter}/>
+          <Route path="/dogs" component={PuppyContainer} onEnter={onPuppiesEnter}/>
         </Route>
       </Router>
     </Provider>

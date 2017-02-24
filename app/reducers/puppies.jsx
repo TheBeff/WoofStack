@@ -59,6 +59,18 @@ export const getAllPuppies = (puppies) => {
 			.then(puppies => dispatch(setAllPuppies(puppies)));
 };
 
+export const getPresentPuppies = () => {
+	return dispatch => 
+		axios.get('/api/dogs')
+			.then(result => result.data)
+			.then(puppies => {
+				const presentPuppies = puppies.filter(puppy => {
+					if (puppy.attendance === 'present') return puppy;
+				})
+				dispatch(setPresentPuppies(presentPuppies))
+			})
+}
+
 export const updatePuppies = (changedPuppy) => {
 	return dispatch => {
 		axios.put(`/api/dogs/${changedPuppy.id}`, {'puppy': {'id': changedPuppy.id, 'attendance': changedPuppy.attendance}})
@@ -72,6 +84,7 @@ export const updatePuppies = (changedPuppy) => {
 		 })
 	 };
 };
+
 
 export default reducer;
 
