@@ -2,6 +2,7 @@
 
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import Dog from './Dog'
 
 
 import {getAllPuppies, updatePuppies} from '../reducers/puppies'
@@ -29,7 +30,7 @@ export class PuppyContainer extends Component {
 
 	render() {
 		return (
-			<div>hello</div>
+			<Dog/>
 			)
 	}
 }
