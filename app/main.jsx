@@ -6,8 +6,10 @@ import {connect, Provider} from 'react-redux'
 
 import store from './store'
 import Jokes from './components/Jokes'
+import PuppyContainer from './components/PuppyContainer'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
+import {getAllPuppies, updatePuppies} from './reducers/puppies'
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -21,12 +23,17 @@ const ExampleApp = connect(
     </div>
 )
 
+const onPuppiesEnter = () => {
+  store.dispatch(getAllPuppies())
+}
+
 render (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={ExampleApp}>
         <IndexRedirect to="/jokes" />
         <Route path="/jokes" component={Jokes} />
+        <Route path="/puppies" component={PuppyContainer} onEnter={onPuppiesEnter}/>
       </Route>
     </Router>
   </Provider>,
