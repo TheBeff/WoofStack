@@ -4,51 +4,60 @@ import React from 'react';
 import {Paper, RaisedButton} from 'material-ui';
 import {GridTile} from 'material-ui/GridList';
 import updatePuppies from '../reducers/puppies';
-
-const sampleDog = {id: 2, name: 'Ben', imageURL: '/images/redsweatshirt.jpg', parentName: 'Ceren', preferredPettings: ['head'], okToFeed: 'Will eat anything!', notes: 'Is a sad dog...', floor: '11', cohort: 'Staff', breed: 'Mutt', age: 4, attendance: 'present'};
+import {connect} from 'react-redux'
 
 const style = {
-  paper: {
-    height: 500
-  },
   img: {
-    maxHeight: 300
+    maxHeight: 300,
   }
 };
 
-export default class Dog extends React.Component {
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getPuppies: () => {
+      dispatch(getAllPuppies())
+    },
+    updatePuppiesDispatch: (puppy) => {
+      dispatch(updatePuppies(puppy))
+    }
+  }
+}
+
+export class Dog extends React.Component {
 
   constructor (props) {
     super(props)
     this.state = {
-      attendance: sampleDog.attendance === 'present' ? 'Check Me Out!' : 'Check Me In!',
-      onClick: sampleDog.attendance === 'present' ? this.logOut : this.logIn
+      attendance: props.puppy.attendance === 'present' ? 'Check Me Out!' : 'Check Me In!',
+      onClick: props.puppy.attendance === 'present' ? this.logOut : this.logIn
     }
   }
 
   logIn () {
-    updatePuppies({id: sampleDog.id, attendance: 'present'})
+    updatePuppiesDispatch({id: this.props.puppy.id, attendance: 'present'})
     this.setState({ attendance: 'Check Me Out!', onClick: this.logOut })
   }
 
   logOut () {
-    updatePuppies({id: sampleDog.id, attendance: 'absent'})
+    updatePuppiesDispatch({id: this.props.puppy.id, attendance: 'absent'})
   }
   
   render () {
 
     return (
-          <Paper style={style.paper} zDepth={3}>
-            <img style={style.img} src={sampleDog.imageURL} />
-            <h1>{sampleDog.name}</h1>
+          <GridTile>
+            <img style={style.img} src={this.props.puppy.imageURL} />
+            <h1>{this.props.puppy.name}</h1>
             <RaisedButton label={this.state.attendance} primary={true} style={style} onClick={this.state.onClick}/>
-            <p>Parent: {sampleDog.parentName}</p>
-            <p>What I can eat: {sampleDog.okToFeed}</p>
-            <p>Pet me on my: {sampleDog.preferredPettings}</p>
-            <p>Floor: {sampleDog.floor}</p>
-            <p>Cohort: {sampleDog.cohort}</p>
-            <p>Notes: {sampleDog.notes}</p>
-          </Paper>
+            <p>Parent: {this.props.puppy.parentName}</p>
+            <p>What I can eat: {this.props.puppy.okToFeed}</p>
+            <p>Pet me on my: {this.props.puppy.preferredPettings}</p>
+            <p>Floor: {this.props.puppy.floor}</p>
+            <p>Cohort: {this.props.puppy.cohort}</p>
+            <p>Notes: {this.props.puppy.notes}</p>
+          </GridTile>
     );
   }
 };
+
+export default connect(mapDispatchToProps)(Dog)

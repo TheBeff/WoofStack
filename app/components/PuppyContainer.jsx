@@ -5,23 +5,8 @@ import {connect} from 'react-redux'
 import Dog from './Dog'
 import {GridList} from 'material-ui/GridList';
 
-
-
-import {getAllPuppies, updatePuppies} from '../reducers/puppies'
-
 const mapStateToProps = (state) => {
 	return { allPuppies : state.puppies.puppies, presentPuppies: state.puppies.presentPuppies }
-}
-
-const mapDispatchToProps = (dispatch) => {
-	return {
-		getPuppies: () => {
-			dispatch(getAllPuppies())
-		},
-		updatePuppies: (puppy) => {
-			dispatch(updatePuppies(puppy))
-		}
-	}
 }
 
 export class PuppyContainer extends Component {
@@ -39,25 +24,27 @@ export class PuppyContainer extends Component {
 		    justifyContent: 'space-around',
 		  },
 		  gridList: {
-		    width: 500,
-		    height: 450,
 		    overflowY: 'auto',
 		  },
+		  h2: {
+		  	textAlign: 'center'
+		  }
 		};
 
 		return (
 			<div>
 				<div style={styles.root}>
-				  <GridList cellHeight={180} style={styles.gridList}>
+				  <GridList cellHeight='auto' style={styles.gridList} cols='2'>
 				  	{this.props.presentPuppies.map(puppy => (
-				  		<Dog key={puppy.id} />
+				  		<Dog key={puppy.id} puppy={puppy}/>
 				  	))}
 				  </GridList>
 				</div>
 				<div style={styles.root}>
-				  <GridList cellHeight={180} style={styles.gridList}>
+				  <h2>All Fullstack Puppies</h2>
+				  <GridList cellHeight='auto' style={styles.gridList} cols='3'>
 				  	{this.props.allPuppies.map(puppy => (
-				  		<Dog key={puppy.id} />
+				  		<Dog key={puppy.id} puppy={puppy}/>
 				  	))}
 				  </GridList>
 				</div>
