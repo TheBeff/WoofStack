@@ -49,5 +49,6 @@ function ensureAppSymlink() {
 }
 
 if (module === require.main) {
+  // this is like running npm start
   ensureAppSymlink()
 }
