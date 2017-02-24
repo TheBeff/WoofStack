@@ -13,7 +13,8 @@ const Dog = db.define('dogs', {
   notes: Sequelize.TEXT,
   imageURL: Sequelize.STRING,
   floor: Sequelize.ENUM('11', '25'),
-  cohort: Sequelize.STRING
+  cohort: Sequelize.STRING,
+  attendance: Sequelize.ENUM('present', 'absent')
 });
 
 module.exports = Dog;
