@@ -7,9 +7,11 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import store from './store'
 import Jokes from './components/Jokes'
+import PuppyContainer from './components/PuppyContainer'
 import Dog from './components/Dog'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
+import {getAllPuppies, updatePuppies} from './reducers/puppies'
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -23,6 +25,10 @@ const ExampleApp = connect(
     </div>
 )
 
+const onPuppiesEnter = () => {
+  store.dispatch(getAllPuppies())
+}
+
 render (
   <MuiThemeProvider>
     <Provider store={store}>
@@ -30,6 +36,7 @@ render (
         <Route path="/" component={ExampleApp}>
           <IndexRedirect to="/dogs" />
           <Route path="/dogs" component={Dog} />
+          <Route path="/puppies" component={PuppyContainer} onEnter={onPuppiesEnter}/>
         </Route>
       </Router>
     </Provider>

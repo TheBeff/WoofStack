@@ -53,7 +53,7 @@ export const setPresentPuppies = (presentPuppies) => ({
 	presentPuppies
 });
 
-export const getAllPuppies = () => {
+export const getAllPuppies = (puppies) => {
 	return dispatch =>
 		axios.get('/api/puppies')
 			.then(result => result.data)
@@ -65,10 +65,12 @@ export const updatePuppies = (changedPuppy) => {
 		axios.put('/api/puppies', {'puppy': {'id': changedPuppy.id, 'attendance': changedPuppy.attendance}})
 			 .then(response => {
 			 	const updatedPuppies = response.data
-			 	const presentPuppies = updatedPuppies.filter(puppy => { return puppy.attendance === 'present' ? puppy : null })
-
+			 	const presentPuppies = updatedPuppies.filter(puppy => {
+			 		if (puppy.attendance === 'present') return puppy;
+			 	})
+			 	dispatch(setAllPuppies(updatedPuppies))
+			 	dispatch(setPresentPuppies(presentPuppies))
 			 })
-
 }
 
 export default reducer;
