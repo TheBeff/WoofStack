@@ -35,8 +35,7 @@ render (
       <Router history={browserHistory}>
         <Route path="/" component={ExampleApp}>
           <IndexRedirect to="/dogs" />
-          <Route path="/dogs" component={Dog} />
-          <Route path="/puppies" component={PuppyContainer} onEnter={onPuppiesEnter}/>
+          <Route path="/dogs" component={PuppyContainer} onEnter={onPuppiesEnter}/>
         </Route>
       </Router>
     </Provider>
