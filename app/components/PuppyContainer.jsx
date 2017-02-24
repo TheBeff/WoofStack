@@ -46,17 +46,21 @@ export class PuppyContainer extends Component {
 		};
 
 		return (
-			<div style={styles.root}>
-			  <GridList cellHeight={180} style={styles.gridList}>
-			  	{this.props.presentPuppies.map(puppy => (
-			  		<Dog key={puppy.id} />
-			  	))}
-			  </GridList>
-			  <GridList cellHeight={180} style={styles.gridList}>
-			  	{this.props.allPuppies.map(puppy => (
-			  		<Dog key={puppy.id} />
-			  	))}
-			  </GridList>
+			<div>
+				<div style={styles.root}>
+				  <GridList cellHeight={180} style={styles.gridList}>
+				  	{this.props.presentPuppies.map(puppy => (
+				  		<Dog key={puppy.id} />
+				  	))}
+				  </GridList>
+				</div>
+				<div style={styles.root}>
+				  <GridList cellHeight={180} style={styles.gridList}>
+				  	{this.props.allPuppies.map(puppy => (
+				  		<Dog key={puppy.id} />
+				  	))}
+				  </GridList>
+				</div>
 			</div>
 			)
 	}

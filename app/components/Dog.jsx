@@ -11,9 +11,9 @@ const style = {
   paper: {
     height: 500
   },
-  // image: {
-  //   maxHeight: 300
-  // }
+  img: {
+    maxHeight: 300
+  }
 };
 
 export default class Dog extends React.Component {
@@ -39,7 +39,7 @@ export default class Dog extends React.Component {
 
     return (
           <Paper style={style.paper} zDepth={3}>
-            <img  src={sampleDog.imageURL} />
+            <img style={style.img} src={sampleDog.imageURL} />
             <h1>{sampleDog.name}</h1>
             <RaisedButton label={this.state.attendance} primary={true} style={style} onClick={this.state.onClick}/>
             <p>Parent: {sampleDog.parentName}</p>
