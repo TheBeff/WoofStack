@@ -62,10 +62,10 @@ export const getAllPuppies = () => {
 
 export const updatePuppies = (changedPuppy) => {
 	return dispatch => 
-		axios.put('/api/puppies', {'puppy': {'id': changedPuppy.id, 'attendance': changedPuppy.attendance})
+		axios.put('/api/puppies', {'puppy': {'id': changedPuppy.id, 'attendance': changedPuppy.attendance}})
 			 .then(response => {
 			 	const updatedPuppies = response.data
-			 	const presentPuppies = updatedPuppies.filter(puppy => return puppy.attendance === 'present' ? puppy : null)
+			 	const presentPuppies = updatedPuppies.filter(puppy => { return puppy.attendance === 'present' ? puppy : null })
 
 			 })
 
