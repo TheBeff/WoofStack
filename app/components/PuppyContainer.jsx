@@ -3,6 +3,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import Dog from './Dog'
+import {GridList} from 'material-ui/GridList';
+
 
 
 import {getAllPuppies, updatePuppies} from '../reducers/puppies'
@@ -29,8 +31,33 @@ export class PuppyContainer extends Component {
 	}
 
 	render() {
+
+		const styles = {
+		  root: {
+		    display: 'flex',
+		    flexWrap: 'wrap',
+		    justifyContent: 'space-around',
+		  },
+		  gridList: {
+		    width: 500,
+		    height: 450,
+		    overflowY: 'auto',
+		  },
+		};
+
 		return (
-			<Dog/>
+			<div style={styles.root}>
+			  <GridList cellHeight={180} style={styles.gridList}>
+			  	{this.props.presentPuppies.map(puppy => (
+			  		<Dog key={puppy.id} />
+			  	))}
+			  </GridList>
+			  <GridList cellHeight={180} style={styles.gridList}>
+			  	{this.props.allPuppies.map(puppy => (
+			  		<Dog key={puppy.id} />
+			  	))}
+			  </GridList>
+			</div>
 			)
 	}
 }

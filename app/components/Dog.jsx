@@ -1,7 +1,8 @@
 'use strict';
 
 import React from 'react';
-import {Paper} from 'material-ui';
+import {Paper, RaisedButton} from 'material-ui';
+import {GridTile} from 'material-ui/GridList';
 import updatePuppies from '../reducers/puppies';
 
 const sampleDog = {id: 2, name: 'Ben', imageURL: '/images/redsweatshirt.jpg', parentName: 'Ceren', preferredPettings: ['head'], okToFeed: 'Will eat anything!', notes: 'Is a sad dog...', floor: '11', cohort: 'Staff', breed: 'Mutt', age: 4, attendance: 'present'};
@@ -35,18 +36,19 @@ export default class Dog extends React.Component {
   }
   
   render () {
+
     return (
-      <Paper style={style.paper} zDepth={3}>
-        <img  src={sampleDog.imageURL} />
-        <h1>{sampleDog.name}</h1>
-        <RaisedButton label={this.state.attendance} primary={true} style={style} onClick={this.state.onClick}/>
-        <p>Parent: {sampleDog.parentName}</p>
-        <p>What I can eat: {sampleDog.okToFeed}</p>
-        <p>Pet me on my: {sampleDog.preferredPettings}</p>
-        <p>Floor: {sampleDog.floor}</p>
-        <p>Cohort: {sampleDog.cohort}</p>
-        <p>Notes: {sampleDog.notes}</p>
-      </Paper>
+          <Paper style={style.paper} zDepth={3}>
+            <img  src={sampleDog.imageURL} />
+            <h1>{sampleDog.name}</h1>
+            <RaisedButton label={this.state.attendance} primary={true} style={style} onClick={this.state.onClick}/>
+            <p>Parent: {sampleDog.parentName}</p>
+            <p>What I can eat: {sampleDog.okToFeed}</p>
+            <p>Pet me on my: {sampleDog.preferredPettings}</p>
+            <p>Floor: {sampleDog.floor}</p>
+            <p>Cohort: {sampleDog.cohort}</p>
+            <p>Notes: {sampleDog.notes}</p>
+          </Paper>
     );
   }
 };
