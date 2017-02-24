@@ -14,7 +14,7 @@ const UPDATE_PUPPY = 'UPDATE_PUPPY';
 const reducer = (state = initialState, action) => {
 
 	const newState = Object.assign({}, state);
-
+	console.log("this is the action", action)
 	switch (action.type) {
 
 		case GET_ALL_PUPPIES:
@@ -61,16 +61,30 @@ export const getAllPuppies = (puppies) => {
 };
 
 export const updatePuppies = (changedPuppy) => {
-	return dispatch => 
-		axios.put('/api/puppies', {'puppy': {'id': changedPuppy.id, 'attendance': changedPuppy.attendance}})
-			 .then(response => {
-			 	const updatedPuppies = response.data
-			 	const presentPuppies = updatedPuppies.filter(puppy => {
-			 		if (puppy.attendance === 'present') return puppy;
-			 	})
-			 	dispatch(setAllPuppies(updatedPuppies))
-			 	dispatch(setPresentPuppies(presentPuppies))
-			 })
+	console.log("update puppies?")
+	return dispatch => {
+		// axios.put(`/api/puppies/${changedPuppy.id}`, {'puppy': {'id': changedPuppy.id, 'attendance': changedPuppy.attendance}})
+		// 	 .then(response => {
+		// 	 	const updatedPuppies = response.data
+		// 	 	const presentPuppies = updatedPuppies.filter(puppy => {
+		// 	 		if (puppy.attendance === 'present') return puppy;
+		// 	 	})
+		// 	 	dispatch(setAllPuppies(updatedPuppies))
+		// 	 	dispatch(setPresentPuppies(presentPuppies))
+		// 	 })
+		// 	 .then(() => {
+			
+			var payload = {
+				channel: '#woofstack',
+				username: 'Woofstack',
+				text: `${changedPuppy.name} is on campus! Please come to floor ${changedPuppy.floor} rub my ${changedPuppy.preferredPetting[0]}. Visit https://wpjjvhnzkz.localtunnel.me to see who else is on campus today!`
+			}
+			console.log("how about now?")
+				 axios.post('https://hooks.slack.com/services/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', payload)
+			 	};
 }
 
 export default reducer;
+
+
+// curl -X POST --data-urlencode 'payload={"channel": "#woofstack", "username": "WoofStack", "text": "${dog.name} is on campus! Please come to floor ${dog.floor} rub my ${dog.preferredPetting[0]}. Visit https://couarsytrd.localtunnel.me to see who else is on campus today!", "icon_emoji": ":ohmydog:"}', https://hooks.slack.com/services/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 

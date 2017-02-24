@@ -30,4 +30,3 @@ module.exports = require('express').Router()
     )
 
 
-// curl -X POST --data-urlencode 'payload={"channel": "#general", "username": "WoofStack", "text": "${dog.name} is on campus! Please come to floor ${dog.floor} rub my ${dog.preferredPetting[0]}. Visit https://couarsytrd.localtunnel.me to see who else is on campus today!", "icon_emoji": ":ohmydog:"}' https://hooks.slack.com/services/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

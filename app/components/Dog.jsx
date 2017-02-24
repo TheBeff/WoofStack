@@ -1,10 +1,10 @@
 'use strict';
 
 import React from 'react';
-import {Paper} from 'material-ui';
-import updatePuppies from '../reducers/puppies';
+import {Paper, RaisedButton} from 'material-ui';
+import {updatePuppies} from '../reducers/puppies';
 
-const sampleDog = {id: 2, name: 'Ben', imageURL: '/images/redsweatshirt.jpg', parentName: 'Ceren', preferredPettings: ['head'], okToFeed: 'Will eat anything!', notes: 'Is a sad dog...', floor: '11', cohort: 'Staff', breed: 'Mutt', age: 4, attendance: 'present'};
+const sampleDog = {id: 2, name: 'Ben', imageURL: '/images/redsweatshirt.jpg', parentName: 'Ceren', preferredPettings: ['head'], okToFeed: 'Will eat anything!', notes: 'Is a sad dog...', floor: '11', cohort: 'Staff', breed: 'Mutt', age: 4, attendance: 'absent'};
 
 const style = {
   paper: {
@@ -20,17 +20,21 @@ export default class Dog extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      attendance: sampleDog.attendance === 'present' ? 'Check Me Out!' : 'Check Me In!',
+      attendance: sampleDog.attendance === 'present' ? 'Log Me Out!' : 'Log Me In!',
       onClick: sampleDog.attendance === 'present' ? this.logOut : this.logIn
     }
+    this.logIn = this.logIn.bind(this)
+    this.logOut = this.logOut.bind(this)
   }
 
   logIn () {
+    console.log("are we hitting this?")
     updatePuppies({id: sampleDog.id, attendance: 'present'})
-    this.setState({ attendance: 'Check Me Out!', onClick: this.logOut })
+    // this.setState({ attendance: 'Check Me Out!', onClick: this.logOut })
   }
 
   logOut () {
+    console.log("are we hitting this?")
     updatePuppies({id: sampleDog.id, attendance: 'absent'})
   }
   
