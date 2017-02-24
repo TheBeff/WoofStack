@@ -55,14 +55,14 @@ export const setPresentPuppies = (presentPuppies) => ({
 
 export const getAllPuppies = (puppies) => {
 	return dispatch =>
-		axios.get('/api/puppies')
+		axios.get('/api/dogs')
 			.then(result => result.data)
 			.then(puppies => dispatch(setAllPuppies(puppies)));
 };
 
 export const updatePuppies = (changedPuppy) => {
 	return dispatch => 
-		axios.put('/api/puppies', {'puppy': {'id': changedPuppy.id, 'attendance': changedPuppy.attendance}})
+		axios.put('/api/dogs', {'dog': {'id': changedPuppy.id, 'attendance': changedPuppy.attendance}})
 			 .then(response => {
 			 	const updatedPuppies = response.data
 			 	const presentPuppies = updatedPuppies.filter(puppy => {
