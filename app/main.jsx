@@ -34,8 +34,7 @@ render (
   <MuiThemeProvider>
     <Provider store={store}>
       <Router history={browserHistory}>
-          <IndexRedirect to="/dogs" />
-          <Route path="/dogs" component={PuppyContainer} onEnter={onPuppiesEnter}/>
+          <Route path="/" component={PuppyContainer} onEnter={onPuppiesEnter}/>
       </Router>
     </Provider>
   </MuiThemeProvider>,
