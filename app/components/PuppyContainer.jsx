@@ -22,6 +22,7 @@ export class PuppyContainer extends Component {
 		    display: 'flex',
 		    flexWrap: 'wrap',
 		    justifyContent: 'space-around',
+		    fontFamily: 'Roboto'
 		  },
 		  gridList: {
 		    overflowY: 'auto',
@@ -53,4 +54,4 @@ export class PuppyContainer extends Component {
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PuppyContainer)
+export default connect(mapStateToProps)(PuppyContainer)

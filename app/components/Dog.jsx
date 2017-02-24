@@ -8,7 +8,8 @@ import {connect} from 'react-redux'
 
 const style = {
   img: {
-    maxHeight: 300,
+    height: '300px',
+    width: 'auto'
   }
 };
 
