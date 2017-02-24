@@ -15,6 +15,12 @@ const style = {
   img: {
     height: '300px',
     width: 'auto'
+  },
+
+  Paper: {
+    textAlign: 'center',
+    marginBottom: '10px',
+    padding: '10px'
   }
 };
 
@@ -43,15 +49,17 @@ class Dog extends React.Component {
   render () {
     return (
           <GridTile>
-            <img style={style.img} src={this.props.puppy.imageURL} />
-            <h1>{this.props.puppy.name}</h1>
-            <RaisedButton label={this.state.attendance} primary={true} style={style} onClick={this.state.onClick}/>
-            <p>Parent: {this.props.puppy.parentName}</p>
-            <p>What I can eat: {this.props.puppy.okToFeed}</p>
-            <p>Pet me on my: {this.props.puppy.preferredPettings}</p>
-            <p>Floor: {this.props.puppy.floor}</p>
-            <p>Cohort: {this.props.puppy.cohort}</p>
-            <p>Notes: {this.props.puppy.notes}</p>
+            <Paper style={style.Paper}>
+              <img style={style.img} src={this.props.puppy.imageURL} />
+              <h1>{this.props.puppy.name}</h1>
+              <RaisedButton label={this.state.attendance} primary={true} style={style} onClick={this.state.onClick}/>
+              <p><strong>Parent:</strong> {this.props.puppy.parentName}</p>
+              <p><strong>What I can eat:</strong> {this.props.puppy.okToFeed}</p>
+              <p><strong>Pet me on my:</strong> {this.props.puppy.preferredPettings}</p>
+              <p><strong>Floor:</strong> {this.props.puppy.floor}</p>
+              <p><strong>Cohort:</strong> {this.props.puppy.cohort}</p>
+              <p><strong>Notes:</strong> {this.props.puppy.notes}</p>
+            </Paper>
           </GridTile>
     );
   }

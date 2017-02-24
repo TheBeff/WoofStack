@@ -6,11 +6,8 @@ import {connect, Provider} from 'react-redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import store from './store'
-import Jokes from './components/Jokes'
 import PuppyContainer from './components/PuppyContainer'
 import Dog from './components/Dog'
-import Login from './components/Login'
-import WhoAmI from './components/WhoAmI'
 import {getAllPuppies, getPresentPuppies} from './reducers/puppies'
 
 const ExampleApp = connect(
@@ -34,10 +31,8 @@ render (
   <MuiThemeProvider>
     <Provider store={store}>
       <Router history={browserHistory}>
-        <Route path="/" component={ExampleApp}>
           <IndexRedirect to="/dogs" />
           <Route path="/dogs" component={PuppyContainer} onEnter={onPuppiesEnter}/>
-        </Route>
       </Router>
     </Provider>
   </MuiThemeProvider>,
