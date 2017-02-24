@@ -2,27 +2,51 @@
 
 import React from 'react';
 import {Paper} from 'material-ui';
+import updatePuppies from '../reducers/puppies';
 
-const sampleDog = {name: 'Ben', imageURL: '/images/redsweatshirt.jpg', parentName: 'Ceren', preferredPettings: ['head'], okToFeed: 'Will eat anything!', notes: 'Is a sad dog...', floor: '11', cohort: 'Staff', breed: 'Mutt', age: 4, attendance: 'present'};
+const sampleDog = {id: 2, name: 'Ben', imageURL: '/images/redsweatshirt.jpg', parentName: 'Ceren', preferredPettings: ['head'], okToFeed: 'Will eat anything!', notes: 'Is a sad dog...', floor: '11', cohort: 'Staff', breed: 'Mutt', age: 4, attendance: 'present'};
 
 const style = {
-  height: 500,
-  width: 500
+  paper: {
+    height: 500
+  },
+  // image: {
+  //   maxHeight: 300
+  // }
 };
 
-const Dog = (props) => {
-  return (
-    <Paper style={style} zDepth={3}>
-      <img src={sampleDog.imageURL} />
-      <h1>{sampleDog.name}</h1>
-      <p>Parent: {sampleDog.parentName}</p>
-      <p>What I can eat: {sampleDog.okToFeed}</p>
-      <p>Pet me on my: {sampleDog.preferredPettings}</p>
-      <p>Floor: {sampleDog.floor}</p>
-      <p>Cohort: {sampleDog.cohort}</p>
-      <p>Notes: {sampleDog.notes}</p>
-    </Paper>
-  );
-};
+export default class Dog extends React.Component {
 
-export default Dog;
+  constructor (props) {
+    super(props)
+    this.state = {
+      attendance: sampleDog.attendance === 'present' ? 'Check Me Out!' : 'Check Me In!',
+      onClick: sampleDog.attendance === 'present' ? this.logOut : this.logIn
+    }
+  }
+
+  logIn () {
+    updatePuppies({id: sampleDog.id, attendance: 'present'})
+    this.setState({ attendance: 'Check Me Out!', onClick: this.logOut })
+  }
+
+  logOut () {
+    updatePuppies({id: sampleDog.id, attendance: 'absent'})
+  }
+  
+  render () {
+    return (
+      <Paper style={style.paper} zDepth={3}>
+        <img  src={sampleDog.imageURL} />
+        <h1>{sampleDog.name}</h1>
+        <RaisedButton label={this.state.attendance} primary={true} style={style} onClick={this.state.onClick}/>
+        <p>Parent: {sampleDog.parentName}</p>
+        <p>What I can eat: {sampleDog.okToFeed}</p>
+        <p>Pet me on my: {sampleDog.preferredPettings}</p>
+        <p>Floor: {sampleDog.floor}</p>
+        <p>Cohort: {sampleDog.cohort}</p>
+        <p>Notes: {sampleDog.notes}</p>
+      </Paper>
+    );
+  }
+};
