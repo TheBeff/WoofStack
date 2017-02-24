@@ -10,6 +10,9 @@ import PuppyContainer from './components/PuppyContainer'
 import Dog from './components/Dog'
 import {getAllPuppies, getPresentPuppies} from './reducers/puppies'
 
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
+
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
 ) (
