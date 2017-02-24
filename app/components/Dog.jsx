@@ -38,6 +38,11 @@ class Dog extends React.Component {
 
   logIn () {
     this.props.updatePuppies({id: this.props.puppy.id, attendance: 'present'});
+    var audioElement = document.getElementById('checkin');
+      audioElement.setAttribute("preload", "auto");
+      audioElement.autobuffer = true;
+      audioElement.load();
+      audioElement.play();
     // this.setState({ attendance: 'Check Me Out!', onClick: this.logOut })
   }
 
