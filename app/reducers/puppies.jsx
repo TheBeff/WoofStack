@@ -68,7 +68,7 @@ export const updatePuppies = (changedPuppy) => {
 			 	const presentPuppies = updatedPuppies.filter(puppy => {
 			 		if (puppy.attendance === 'present') return puppy;
 			 	})
-			 	dispatch(setAllPuppies())
+			 	dispatch(setAllPuppies(updatedPuppies))
 			 	dispatch(setPresentPuppies(presentPuppies))
 			 })
 }
