@@ -1,10 +1,15 @@
 'use strict';
 
 import React from 'react';
+
+import { connect } from 'react-redux';
 import {Paper, RaisedButton} from 'material-ui';
+import { updatePuppies } from '../reducers/puppies';
+
+const sampleDog = {id: 2, name: 'Ben', imageURL: '/images/redsweatshirt.jpg', parentName: 'Ceren', preferredPettings: ['head'], okToFeed: 'Will eat anything!', notes: 'Is a sad dog...', floor: '11', cohort: 'Staff', breed: 'Mutt', age: 4, attendance: 'absent'};
+
 import {GridTile} from 'material-ui/GridList';
-import updatePuppies from '../reducers/puppies';
-import {connect} from 'react-redux'
+
 
 const style = {
   img: {
@@ -19,38 +24,29 @@ const style = {
   }
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getPuppies: () => {
-      dispatch(getAllPuppies())
-    },
-    updatePuppiesDispatch: (puppy) => {
-      dispatch(updatePuppies(puppy))
-    }
-  }
-}
-
-export class Dog extends React.Component {
+class Dog extends React.Component {
 
   constructor (props) {
-    super(props)
+    super(props);
     this.state = {
-      attendance: props.puppy.attendance === 'present' ? 'Check Me Out!' : 'Check Me In!',
-      onClick: props.puppy.attendance === 'present' ? this.logOut : this.logIn
-    }
+      attendance: sampleDog.attendance === 'present' ? 'Log Me Out!' : 'Log Me In!',
+      onClick: sampleDog.attendance === 'present' ? this.logOut.bind(this) : this.logIn.bind(this)
+    };
+    this.logIn = this.logIn.bind(this);
+    this.logOut = this.logOut.bind(this);
   }
 
   logIn () {
-    updatePuppiesDispatch({id: this.props.puppy.id, attendance: 'present'})
-    this.setState({ attendance: 'Check Me Out!', onClick: this.logOut })
+    this.props.updatePuppies({id: sampleDog.id, attendance: 'present'});
+    // this.setState({ attendance: 'Check Me Out!', onClick: this.logOut })
   }
 
   logOut () {
-    updatePuppiesDispatch({id: this.props.puppy.id, attendance: 'absent'})
+    this.props.updatePuppies({id: sampleDog.id, attendance: 'absent'})
+
   }
-  
+
   render () {
-    
     return (
           <GridTile>
             <Paper style={style.Paper}>
@@ -67,6 +63,18 @@ export class Dog extends React.Component {
           </GridTile>
     );
   }
+}
+
+const mapStateToProps = state => {
+  return {};
 };
 
-export default connect(mapDispatchToProps)(Dog)
+const mapDispatchToProps = dispatch => {
+  return {
+    updatePuppies: (changedPuppy) => {
+      dispatch(updatePuppies(changedPuppy));
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dog);

@@ -12,7 +12,6 @@ const DELETE_PUPPY = 'DELETE_PUPPY';
 const UPDATE_PUPPY = 'UPDATE_PUPPY';
 
 const reducer = (state = initialState, action) => {
-
 	const newState = Object.assign({}, state);
 
 	switch (action.type) {
@@ -73,17 +72,21 @@ export const getPresentPuppies = () => {
 }
 
 export const updatePuppies = (changedPuppy) => {
-	return dispatch => 
-		axios.put('/api/dogs', {'dog': {'id': changedPuppy.id, 'attendance': changedPuppy.attendance}})
-			 .then(response => {
-			 	const updatedPuppies = response.data
-			 	const presentPuppies = updatedPuppies.filter(puppy => {
-			 		if (puppy.attendance === 'present') return puppy;
-			 	})
-			 	dispatch(setAllPuppies(updatedPuppies))
-			 	dispatch(setPresentPuppies(presentPuppies))
-			 })
-}
+	return dispatch => {
+		axios.put(`/api/dogs/${changedPuppy.id}`, {'puppy': {'id': changedPuppy.id, 'attendance': changedPuppy.attendance}})
+		 .then(response => {
+		 	const updatedPuppies = response.data
+		 	const presentPuppies = updatedPuppies.filter(puppy => {
+		 		if (puppy.attendance === 'present') return puppy;
+		 	})
+		 	dispatch(setAllPuppies(updatedPuppies))
+		 	dispatch(setPresentPuppies(presentPuppies))
+		 })
+	 };
+};
 
 
 export default reducer;
+
+
+// curl -X POST --data-urlencode 'payload={"channel": "#woofstack", "username": "WoofStack", "text": "${dog.name} is on campus! Please come to floor ${dog.floor} rub my ${dog.preferredPetting[0]}. Visit https://couarsytrd.localtunnel.me to see who else is on campus today!", "icon_emoji": ":ohmydog:"}', https://hooks.slack.com/services/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
