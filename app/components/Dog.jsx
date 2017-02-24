@@ -14,7 +14,7 @@ import {GridTile} from 'material-ui/GridList';
 const style = {
   img: {
     height: '300px',
-    width: 'auto'
+    width: 'auto',
   },
 
   Paper: {
@@ -54,7 +54,7 @@ class Dog extends React.Component {
   render () {
     return (
           <GridTile>
-            <Paper style={style.Paper}>
+            <Paper zDepth={2} style={style.Paper}>
               <img style={style.img} src={this.props.puppy.imageURL} />
               <h1>{this.props.puppy.name}</h1>
               <RaisedButton label={this.state.attendance} primary={true} style={style} onClick={this.state.onClick}/>

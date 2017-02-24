@@ -31,7 +31,7 @@ module.exports = require('express').Router()
 			var payload = {
 				channel: '#woofstack',
 				username: 'Woofstack',
-				text: `${updated.name} is on campus! Please come to floor ${updated.floor} rub my ${updated.preferredPettings[0]}. Visit https://wpjjvhnzkz.localtunnel.me to see who else is on campus today!`
+				text: `${updated.name} is on campus! Please come to floor ${updated.floor} to rub my ${updated.preferredPettings[0]}. Visit https://mvshsfemlt.localtunnel.me to see who else is on campus today!`
 			};
 
 			axios.post('https://hooks.slack.com/services/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', payload)
