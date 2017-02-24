@@ -13,6 +13,9 @@ import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import {getAllPuppies, getPresentPuppies} from './reducers/puppies'
 
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
+
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
 ) (

@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import {Paper, RaisedButton} from 'material-ui';
 import { updatePuppies } from '../reducers/puppies';
 
-const sampleDog = {id: 2, name: 'Ben', imageURL: '/images/redsweatshirt.jpg', parentName: 'Ceren', preferredPettings: ['head'], okToFeed: 'Will eat anything!', notes: 'Is a sad dog...', floor: '11', cohort: 'Staff', breed: 'Mutt', age: 4, attendance: 'absent'};
+// const sampleDog = {id: 2, name: 'Ben', imageURL: '/images/redsweatshirt.jpg', parentName: 'Ceren', preferredPettings: ['head'], okToFeed: 'Will eat anything!', notes: 'Is a sad dog...', floor: '11', cohort: 'Staff', breed: 'Mutt', age: 4, attendance: 'absent'};
 
 import {GridTile} from 'material-ui/GridList';
 
@@ -23,20 +23,20 @@ class Dog extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      attendance: sampleDog.attendance === 'present' ? 'Log Me Out!' : 'Log Me In!',
-      onClick: sampleDog.attendance === 'present' ? this.logOut.bind(this) : this.logIn.bind(this)
+      attendance: this.props.puppy.attendance === 'present' ? 'Log Me Out!' : 'Log Me In!',
+      onClick: this.props.puppy.attendance === 'present' ? this.logOut.bind(this) : this.logIn.bind(this)
     };
     this.logIn = this.logIn.bind(this);
     this.logOut = this.logOut.bind(this);
   }
 
   logIn () {
-    this.props.updatePuppies({id: sampleDog.id, attendance: 'present'});
+    this.props.updatePuppies({id: this.props.puppy.id, attendance: 'present'});
     // this.setState({ attendance: 'Check Me Out!', onClick: this.logOut })
   }
 
   logOut () {
-    this.props.updatePuppies({id: sampleDog.id, attendance: 'absent'})
+    this.props.updatePuppies({id: this.props.puppy.id, attendance: 'absent'})
 
   }
 
