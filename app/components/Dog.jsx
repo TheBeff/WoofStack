@@ -1,13 +1,9 @@
 'use strict';
 
 import React from 'react';
-
 import { connect } from 'react-redux';
 import {Paper, RaisedButton} from 'material-ui';
 import { updatePuppies } from '../reducers/puppies';
-
-// const sampleDog = {id: 2, name: 'Ben', imageURL: '/images/redsweatshirt.jpg', parentName: 'Ceren', preferredPettings: ['head'], okToFeed: 'Will eat anything!', notes: 'Is a sad dog...', floor: '11', cohort: 'Staff', breed: 'Mutt', age: 4, attendance: 'absent'};
-
 import {GridTile} from 'material-ui/GridList';
 
 
@@ -43,12 +39,10 @@ class Dog extends React.Component {
       audioElement.autobuffer = true;
       audioElement.load();
       audioElement.play();
-    // this.setState({ attendance: 'Check Me Out!', onClick: this.logOut })
   }
 
   logOut () {
     this.props.updatePuppies({id: this.props.puppy.id, attendance: 'absent'})
-
   }
 
   render () {
