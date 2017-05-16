@@ -1,14 +1,14 @@
 'use strict'
-import React from 'react'
-import {Router, Route, IndexRedirect, browserHistory} from 'react-router'
-import {render} from 'react-dom'
-import {connect, Provider} from 'react-redux'
+import React from 'react';
+import {Router, Route, IndexRedirect, browserHistory} from 'react-router';
+import {render} from 'react-dom';
+import {connect, Provider} from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import store from './store'
-import PuppyContainer from './components/PuppyContainer'
-import Dog from './components/Dog'
-import {getAllPuppies, getPresentPuppies} from './reducers/puppies'
+import store from './store';
+import PuppyContainer from './components/PuppyContainer';
+import Dog from './components/Dog';
+import {getAllPuppies, getPresentPuppies} from './reducers/puppies';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
@@ -23,12 +23,12 @@ const ExampleApp = connect(
       </nav>
       {children}
     </div>
-)
+);
 
 const onPuppiesEnter = () => {
   store.dispatch(getAllPuppies())
   store.dispatch(getPresentPuppies())
-}
+};
 
 render (
   <MuiThemeProvider>
@@ -39,4 +39,4 @@ render (
     </Provider>
   </MuiThemeProvider>,
   document.getElementById('main')
-)
+);
