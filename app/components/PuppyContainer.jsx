@@ -1,5 +1,3 @@
-//allpuppies, presentpuppies
-
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Dog from './Dog';
