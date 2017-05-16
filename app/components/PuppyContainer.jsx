@@ -1,15 +1,18 @@
 //allpuppies, presentpuppies
 
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import Dog from './Dog'
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import Dog from './Dog';
 import {GridList} from 'material-ui/GridList';
-import {Paper} from 'material-ui'
-import NavBar from './AppBar'
+import {Paper} from 'material-ui';
+import NavBar from './AppBar';
 
 const mapStateToProps = (state) => {
-	return { allPuppies : state.puppies.puppies, presentPuppies: state.puppies.presentPuppies }
-}
+	return { 
+		allPuppies : state.puppies.puppies, 
+		presentPuppies: state.puppies.presentPuppies 
+	}
+};
 
 export class PuppyContainer extends Component {
 
@@ -65,8 +68,8 @@ export class PuppyContainer extends Component {
 				  </GridList>
 				</div>
 			</div>
-			)
+		)
 	}
-}
+};
 
-export default connect(mapStateToProps)(PuppyContainer)
+export default connect(mapStateToProps)(PuppyContainer);
